@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql
 
 # Copy the built application from the build stage
-COPY --from=build-stage /app 
+COPY --from=build-stage /app /app 
 
 # Configure Apache
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
